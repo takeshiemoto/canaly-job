@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/csv"
 	"fmt"
+	"io"
 	"os"
 )
 
@@ -15,10 +16,20 @@ func main() {
 	defer file.Close()
 
 	reader := csv.NewReader(file)
-	record, err := reader.Read()
-	if err != nil {
-		fmt.Println("Error reading the CSV", err)
-		return
+	if _, err := reader.Read(); err != nil {
+		fmt.Println("Error reading the header row:", err)
 	}
-	fmt.Println(record)
+	for {
+		record, err := reader.Read()
+		if err != nil {
+			if err == io.EOF {
+				break
+			}
+			fmt.Println("Error reading a row:", err)
+			return
+		}
+		fmt.Println(record[0])
+		fmt.Println(record[4])
+		fmt.Println(record[5])
+	}
 }
