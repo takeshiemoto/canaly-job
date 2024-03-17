@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/csv"
 	"fmt"
+	"github.com/takeshiemoto/canaly-job/leran"
 	"io"
 	"os"
 )
@@ -32,4 +33,6 @@ func main() {
 		fmt.Println(record[4])
 		fmt.Println(record[5])
 	}
+
+	leran.Run()
 }
