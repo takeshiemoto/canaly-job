@@ -17,6 +17,24 @@ func Run() {
 	fmt.Printf("%v+", map1)
 }
 
+func RunSimpleLoop() int {
+	result := 0
+	for i := 0; i < 10; i++ {
+		result = i
+	}
+	return result
+}
+
+func RunRangeLoop() int {
+	result := 0
+	// iはindex
+	// vはvalue
+	for i, v := range []int{1, 2, 3} {
+		result = i + v
+	}
+	return result
+}
+
 func RunPointer() {
 	x := 10
 	y := 20
